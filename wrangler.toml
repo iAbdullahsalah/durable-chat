@@ -1,8 +1,19 @@
-name = "my-chat-app"
-main = "app.py"
+name = "durable-chat-template"
+main = "src/app.py"
 compatibility_date = "2024-01-01"
+compatibility_flags = ["python_workers"]
 
+# تعريف الـ Durable Object
+[[durable_objects.bindings]]
+name = "CHAT_ROOM"
+class_name = "ChatRoom"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["ChatRoom"]
+
+# قاعدة بيانات D1 للأرشفة الطويلة
 [[d1_databases]]
-binding = "DB" # الاسم البرمجي الذي سنستخدمه
+binding = "DB"
 database_name = "live-chat"
 database_id = "ea6fda78-ba8c-49e0-be6c-aa15e3961dc1"
